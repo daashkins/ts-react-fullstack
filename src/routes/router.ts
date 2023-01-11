@@ -5,7 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 // import cors from 'cors';
 import cors = require('cors');
 import Puppy from "../models/types";
-
+import {getImage} from "../services/get.image";
 
 export const router = express.Router();
 const allowedOrigins = ['http://localhost:3000'];
@@ -42,6 +42,8 @@ router.post('/', async (_req: Request, res: Response) => {
     try {
         const newPuppy = _req.body as Puppy;
         newPuppy.id= uuidv4();
+        // newPuppy.image = await getImage(newPuppy.breed);
+        // console.log(newPuppy, "mary")
         const result = await collections.puppies?.insertOne(newPuppy);
         result
             ? res.status(201).send(`Successfully created with id ${result.insertedId}`)

@@ -5,15 +5,18 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Puppies from './Puppies';
 import AddPuppy from './AddPuppy';
-
+import FunFact from './FunFact';
 export default function BasicGrid() {
+
+
   return (
-    <Grid container spacing={2} columns={16}>
-  <Grid item xs={8}>
+    <Grid container spacing={2} columns={16}  sx={{ marginTop: "30px"}}>
+  <Grid item lg={8} md={8} xs={16} key="first">
     <Puppies/>
   </Grid>
-  <Grid item xs={8}>
+  <Grid item lg={8} md={8} xs={16} key="second">
    <AddPuppy/>
+   <FunFact/>
   </Grid>
 </Grid>
   );

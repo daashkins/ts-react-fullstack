@@ -16,15 +16,17 @@ export default function TitlebarBelowImageList() {
 
   return (
     <Box>
-       <Typography gutterBottom variant="h4" component="div" color="Orange" fontWeight={600}>
+       <Typography gutterBottom variant="h4" component="div" color="Orange" fontWeight={600} sx={{ marginBottom: "20px"}}>
         Registered dogs:
        </Typography>
     <ImageList sx={{ maxHeight: 700 }}>
       {puppies.map((puppy) => (
         <ImageListItem key={puppy.id}>
           <img
-            src={`${puppy.image}?w=248&fit=crop&auto=format`}
-            srcSet={`${puppy.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            // src={`${puppy.image}?w=248&fit=crop&auto=format`}
+            src={puppy.image}
+            // src="https://images.unsplash.com/photo-1523567353-71ea31cb9f73?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNzk2OTF8MHwxfHNlYXJjaHw5fHxDb3JnaXxlbnwwfHx8fDE2NzM0NTY4MDA&ixlib=rb-4.0.3&q=80"
+            // srcSet={`${puppy.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={puppy.breed}
             loading="lazy"
           />

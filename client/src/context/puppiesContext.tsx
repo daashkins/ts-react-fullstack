@@ -15,6 +15,8 @@ const PuppyProvider = ({ children } : any) => {
 })
  }, [])
 
+ console.log(puppies);
+
   const addPuppy = (puppy: IPuppy) => {
   const newPuppy: IPuppy = {
     id: puppy.id,
