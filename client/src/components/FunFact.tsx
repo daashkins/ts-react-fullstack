@@ -1,16 +1,7 @@
 import * as React from 'react';
-import {useEffect, useState, createContext } from 'react';
-import { PuppyContext } from '../context/puppiesContext';
-import { PuppyContextType, IPuppy } from '../../node_modules/@types/puppies';
+import {useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import PetsIcon from '@mui/icons-material/Pets';
 import axios from 'axios';
 
 

@@ -9,11 +9,24 @@ import Typography from '@mui/material/Typography';
 import PetsIcon from '@mui/icons-material/Pets';
 import { ChangeEventHandler } from 'react';
 import axios from 'axios';
+import {v4 as uuidv4} from 'uuid';
+import dayjs, {Dayjs} from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 const AddPuppy = () => {
   const { addPuppy } = React.useContext(PuppyContext) as PuppyContextType;
-  const [formData, setFormData] = React.useState<IPuppy | {}>();
+  const [formData, setFormData] = React.useState<IPuppy | {}>({
+    id: "",
+    name: "",
+    breed: "",
+    image: "",
+    birth_date: ""
+  });
   const [breed, setBreed] = React.useState<String>("");
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
 
   const handleInputChange: ChangeEventHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFormData({
@@ -39,6 +52,7 @@ const AddPuppy = () => {
   } setFormData({
     ...formData,
     image: image,
+    id: uuidv4(),
   });   
 }
     if(breed) {
@@ -47,15 +61,22 @@ const AddPuppy = () => {
     
   }, [breed])
 
+  useEffect(()=> {
+   const time: String = dayjs(value).format('DD/MM/YYYY');
+   setFormData({
+    ...formData,
+    birth_date: time
+  });   
+  },[value])
 
   const handleAddPuppy = async (e: React.FormEvent, formData: IPuppy | any) => {
     e.preventDefault();
-    addPuppy(formData);
-    console.log(formData);
     try {
       await axios.post(`http://localhost:8000/api/puppies/`, {
         ...formData
       });
+
+        addPuppy(formData);
     } catch (err) {
       console.error(err);
     }
@@ -76,7 +97,19 @@ const AddPuppy = () => {
   >
     <TextField id="name" type="text"  required label="Name" variant="outlined" onChange={handleInputChange} title="name"/>
     <TextField id="breed" type="text"  required label="Breed" variant="outlined" onChange={handleInputChange} title="breed"/>
-    <TextField id="birth_date" type="text"  required label="Birth date" variant="outlined" onChange={handleInputChange} title="birth_name"/>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+          disableFuture
+          label="Responsive"
+          openTo="year"
+          views={['year', 'month', 'day']}
+          value={value}
+          onChange={(newValue) => {
+            setValue(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+    </LocalizationProvider>
     <Button variant="contained" type="submit" style={{backgroundColor: '#d26419'}} >Add your dog</Button>
   </Box>
   </Box>

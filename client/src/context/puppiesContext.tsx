@@ -15,8 +15,6 @@ const PuppyProvider = ({ children } : any) => {
 })
  }, [])
 
- console.log(puppies);
-
   const addPuppy = (puppy: IPuppy) => {
   const newPuppy: IPuppy = {
     id: puppy.id,
@@ -36,11 +34,21 @@ const updatePuppy = (id: string) => {
   })
 }
 const deletePuppy = (id: string) => {
-    puppies.filter((puppy: IPuppy) => {
-      if (puppy.id !== id) {
-        setPuppies([...puppies])
-      }
-    })
+  axios.delete(`http://localhost:8000/api/puppies/${id}`).then( response => {
+    if(response.status !== 202) {
+      throw new Error();
+    }
+});
+console.log(puppies);
+   const newPuppies =  puppies.filter((puppy: IPuppy) => (puppy.id !== id))
+   console.log(newPuppies)
+  //  {
+      // if (puppy.id !== id) {
+      //   setPuppies([...puppies])
+      // }
+    // })
+
+    setPuppies(puppies.filter((puppy) => puppy.id !== id));
   }
   
 

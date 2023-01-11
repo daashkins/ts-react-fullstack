@@ -20,7 +20,6 @@ var PuppyProvider = function (_a) {
             setPuppies(__spreadArrays(response.data));
         });
     }, []);
-    console.log(puppies);
     var addPuppy = function (puppy) {
         var newPuppy = {
             id: puppy.id,
@@ -39,11 +38,20 @@ var PuppyProvider = function (_a) {
         });
     };
     var deletePuppy = function (id) {
-        puppies.filter(function (puppy) {
-            if (puppy.id !== id) {
-                setPuppies(__spreadArrays(puppies));
+        axios_1["default"]["delete"]("http://localhost:8000/api/puppies/" + id).then(function (response) {
+            if (response.status !== 202) {
+                throw new Error();
             }
         });
+        console.log(puppies);
+        var newPuppies = puppies.filter(function (puppy) { return (puppy.id !== id); });
+        console.log(newPuppies);
+        //  {
+        // if (puppy.id !== id) {
+        //   setPuppies([...puppies])
+        // }
+        // })
+        setPuppies(puppies.filter(function (puppy) { return puppy.id !== id; }));
     };
     return (React.createElement(exports.PuppyContext.Provider, { value: { puppies: puppies, addPuppy: addPuppy, updatePuppy: updatePuppy, deletePuppy: deletePuppy } }, children));
 };

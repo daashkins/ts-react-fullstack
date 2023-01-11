@@ -9,5 +9,5 @@ export interface IPuppy {
     puppies: IPuppy[];
     addPuppy: (todo: IPuppy) => void;
     updatePuppy: (id: string) => void;
-    deletePuppy: (id: string) => void;
+    deletePuppy: (id: sring) => void;
   };

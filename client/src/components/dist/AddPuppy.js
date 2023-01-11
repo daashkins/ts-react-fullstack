@@ -56,10 +56,22 @@ var TextField_1 = require("@mui/material/TextField");
 var Typography_1 = require("@mui/material/Typography");
 var Pets_1 = require("@mui/icons-material/Pets");
 var axios_1 = require("axios");
+var uuid_1 = require("uuid");
+var dayjs_1 = require("dayjs");
+var AdapterDayjs_1 = require("@mui/x-date-pickers/AdapterDayjs");
+var LocalizationProvider_1 = require("@mui/x-date-pickers/LocalizationProvider");
+var DatePicker_1 = require("@mui/x-date-pickers/DatePicker");
 var AddPuppy = function () {
     var addPuppy = React.useContext(puppiesContext_1.PuppyContext).addPuppy;
-    var _a = React.useState(), formData = _a[0], setFormData = _a[1];
+    var _a = React.useState({
+        id: "",
+        name: "",
+        breed: "",
+        image: "",
+        birth_date: ""
+    }), formData = _a[0], setFormData = _a[1];
     var _b = React.useState(""), breed = _b[0], setBreed = _b[1];
+    var _c = React.useState(dayjs_1["default"]('2022-04-07')), value = _c[0], setValue = _c[1];
     var handleInputChange = function (event) {
         var _a;
         setFormData(__assign(__assign({}, formData), (_a = {}, _a[event.currentTarget.id] = event.currentTarget.value, _a)));
@@ -82,7 +94,7 @@ var AddPuppy = function () {
                         if (!image) {
                             setFormData(__assign(__assign({}, formData), { image: 'https://media.istockphoto.com/id/513228693/nl/foto/funny-dog-face.jpg?s=612x612&w=0&k=20&c=MaQmRS5XU3Yv1l2KE-XXtM90q3WPj_2edYK1GTqJO_o=' }));
                         }
-                        setFormData(__assign(__assign({}, formData), { image: image }));
+                        setFormData(__assign(__assign({}, formData), { image: image, id: uuid_1.v4() }));
                         return [2 /*return*/];
                 }
             });
@@ -91,20 +103,23 @@ var AddPuppy = function () {
             getImage(breed);
         }
     }, [breed]);
+    react_1.useEffect(function () {
+        var time = dayjs_1["default"](value).format('DD/MM/YYYY');
+        setFormData(__assign(__assign({}, formData), { birth_date: time }));
+    }, [value]);
     var handleAddPuppy = function (e, formData) { return __awaiter(void 0, void 0, void 0, function () {
         var err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    addPuppy(formData);
-                    console.log(formData);
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, axios_1["default"].post("http://localhost:8000/api/puppies/", __assign({}, formData))];
                 case 2:
                     _a.sent();
+                    addPuppy(formData);
                     return [3 /*break*/, 4];
                 case 3:
                     err_1 = _a.sent();
@@ -121,7 +136,10 @@ var AddPuppy = function () {
         React.createElement(Box_1["default"], { component: "form", sx: { '& > :not(style)': { m: 1, width: '50%' } }, noValidate: true, autoComplete: "off", onSubmit: function (e) { return handleAddPuppy(e, formData); } },
             React.createElement(TextField_1["default"], { id: "name", type: "text", required: true, label: "Name", variant: "outlined", onChange: handleInputChange, title: "name" }),
             React.createElement(TextField_1["default"], { id: "breed", type: "text", required: true, label: "Breed", variant: "outlined", onChange: handleInputChange, title: "breed" }),
-            React.createElement(TextField_1["default"], { id: "birth_date", type: "text", required: true, label: "Birth date", variant: "outlined", onChange: handleInputChange, title: "birth_name" }),
+            React.createElement(LocalizationProvider_1.LocalizationProvider, { dateAdapter: AdapterDayjs_1.AdapterDayjs },
+                React.createElement(DatePicker_1.DatePicker, { disableFuture: true, label: "Responsive", openTo: "year", views: ['year', 'month', 'day'], value: value, onChange: function (newValue) {
+                        setValue(newValue);
+                    }, renderInput: function (params) { return React.createElement(TextField_1["default"], __assign({}, params)); } })),
             React.createElement(Button_1["default"], { variant: "contained", type: "submit", style: { backgroundColor: '#d26419' } }, "Add your dog"))));
 };
 exports["default"] = AddPuppy;
