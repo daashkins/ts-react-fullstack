@@ -20,7 +20,7 @@ export default function TitlebarBelowImageList() {
         Registered dogs:
        </Typography>
     <ImageList sx={{ maxHeight: 700 }}>
-      {puppies.map((puppy) => (
+      {puppies.map((puppy: IPuppy) => (
         <ImageListItem key={puppy.id}>
           <img
             // src={`${puppy.image}?w=248&fit=crop&auto=format`}

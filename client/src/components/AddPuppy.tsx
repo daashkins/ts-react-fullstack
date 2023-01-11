@@ -1,20 +1,14 @@
 import * as React from 'react';
 import { PuppyContext } from '../context/puppiesContext';
-import { PuppyContextType, IPuppy } from '../../node_modules/@types/puppies';
-import {useEffect, useState, createContext } from 'react';
+import { PuppyContextType, IPuppy } from '../types';
+import {useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import PetsIcon from '@mui/icons-material/Pets';
 import { ChangeEventHandler } from 'react';
 import axios from 'axios';
-import * as dotenv from "dotenv";
-dotenv.config();
 
 const AddPuppy = () => {
   const { addPuppy } = React.useContext(PuppyContext) as PuppyContextType;
@@ -31,22 +25,20 @@ const AddPuppy = () => {
     }
   };
 
-
-
   useEffect(() => {
     const getImage = async(breed: String) : Promise<void>=> {
-      const response = await axios.get(`https://api.unsplash.com/search/photos?query=${breed}&page=1&client_id=${process.env.UNSPLASH_KEY}`);
+      const response = await axios.get(`https://api.unsplash.com/search/photos?query=${breed}&page=1&client_id=${process.env.REACT_APP_UNSPLASH_KEY}`);
       const number: number = Math.floor(Math.random()*10);
       const image: string = response.data.results[number]?.urls.full;
       console.log(response.data.results[number]);
       if (!image){
         setFormData({
           ...formData,
-          [image]: 'https://media.istockphoto.com/id/513228693/nl/foto/funny-dog-face.jpg?s=612x612&w=0&k=20&c=MaQmRS5XU3Yv1l2KE-XXtM90q3WPj_2edYK1GTqJO_o=',
+          image: 'https://media.istockphoto.com/id/513228693/nl/foto/funny-dog-face.jpg?s=612x612&w=0&k=20&c=MaQmRS5XU3Yv1l2KE-XXtM90q3WPj_2edYK1GTqJO_o=',
         });      
   } setFormData({
     ...formData,
-    [image]: image,
+    image: image,
   });   
 }
     if(breed) {

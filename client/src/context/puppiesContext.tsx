@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState, createContext } from 'react';
 import axios from 'axios';
-import { PuppyContextType, IPuppy } from '../../node_modules/@types/puppies';
+import { PuppyContextType, IPuppy } from '../types';
 
 
 export const PuppyContext = createContext<PuppyContextType | null>(null);
