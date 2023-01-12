@@ -45,14 +45,7 @@ const AddPuppy = () => {
                 `https://api.unsplash.com/search/photos?query=${breed}&page=1&client_id=${process.env.REACT_APP_UNSPLASH_KEY}`
             )
             const number: number = Math.floor(Math.random() * 10)
-            const image: string = response.data.results[number]?.urls.full
-            console.log(response.data.results[number])
-            if (!image) {
-                setFormData({
-                    ...formData,
-                    image: 'https://media.istockphoto.com/id/513228693/nl/foto/funny-dog-face.jpg?s=612x612&w=0&k=20&c=MaQmRS5XU3Yv1l2KE-XXtM90q3WPj_2edYK1GTqJO_o=',
-                })
-            }
+            const image: string = response.data.results[number]?.urls.full || 'https://images.unsplash.com/photo-1609851764352-4f251185b6c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
             setFormData({
                 ...formData,
                 image: image,
@@ -110,7 +103,6 @@ const AddPuppy = () => {
             <Box
                 component="form"
                 sx={{ '& > :not(style)': { m: 1, width: '50%' } }}
-                noValidate
                 autoComplete="off"
                 onSubmit={(e) => handleAddPuppy(e, formData)}
             >

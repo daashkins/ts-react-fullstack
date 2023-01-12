@@ -23,7 +23,7 @@ const Puppies = () => {
             </Typography>
             <ImageList sx={{ maxHeight: 700 }} key="list">
                 {puppies.map((puppy: IPuppy) => (
-                    <Puppy puppy={puppy} />
+                    <Puppy puppy={puppy} key={puppy.id} />
                 ))}
             </ImageList>
         </Box>
