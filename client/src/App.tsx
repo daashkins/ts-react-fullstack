@@ -5,15 +5,22 @@ import AddPuppy from './components/AddPuppy'
 import Main from './components/Main'
 import Header from './components/Header'
 import './App.css'
-
+import { Routes, Route } from 'react-router-dom'
+import Home from './components/Home'
 function App() {
     return (
-        <PuppyProvider>
+        <>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                {/* <Route path='/edit' element={<Edit/>} /> */}
+            </Routes>
+
             <div className="App">
-                <Header />
-                <Main />
+                {/* <Header />
+                <Main /> */}
             </div>
-        </PuppyProvider>
+            {/* </PuppyProvider> */}
+        </>
     )
 }
 

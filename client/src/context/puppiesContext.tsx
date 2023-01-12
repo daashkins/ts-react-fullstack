@@ -27,13 +27,23 @@ const PuppyProvider = ({ children }: any) => {
         setPuppies([...puppies, newPuppy])
     }
 
-    const updatePuppy = (id: string) => {
-        puppies.filter((puppy: IPuppy) => {
-            if (puppy.id === id) {
-                setPuppies([...puppies])
-            }
-        })
+    const updatePuppy = (puppy: IPuppy) => {
+        const newPuppy: IPuppy = {
+            id: puppy.id,
+            name: puppy.name,
+            breed: puppy.breed,
+            birth_date: puppy.birth_date,
+            image: puppy.image,
+        }
+        const newPuppies = [...puppies]
+        const index = newPuppies.findIndex((puppy) => puppy.id === newPuppy.id)
+        if (index > 0) {
+            newPuppies[index].name = newPuppy.name
+            newPuppies[index].breed = newPuppy.breed
+            setPuppies([...newPuppies])
+        }
     }
+
     const deletePuppy = (id: string) => {
         axios
             .delete(`http://localhost:8000/api/puppies/${id}`)

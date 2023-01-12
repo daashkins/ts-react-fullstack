@@ -41,16 +41,22 @@ const AddPuppy = () => {
 
     useEffect(() => {
         const getImage = async (breed: String): Promise<void> => {
-            const response = await axios.get(
-                `https://api.unsplash.com/search/photos?query=${breed}&page=1&client_id=${process.env.REACT_APP_UNSPLASH_KEY}`
-            )
-            const number: number = Math.floor(Math.random() * 10)
-            const image: string = response.data.results[number]?.urls.full || 'https://images.unsplash.com/photo-1609851764352-4f251185b6c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
-            setFormData({
-                ...formData,
-                image: image,
-                id: uuidv4(),
-            })
+            try {
+                const response = await axios.get(
+                    `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_KEY}&q=${breed}+dog&image_type=photo`
+                )
+                const number: number = Math.floor(Math.random() * 10)
+                const image: string =
+                    response.data.hits[number].webformatURL ||
+                    'https://images.unsplash.com/photo-1609851764352-4f251185b6c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+                setFormData({
+                    ...formData,
+                    image: image,
+                    id: uuidv4(),
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }
         if (breed) {
             getImage(breed)
@@ -74,6 +80,7 @@ const AddPuppy = () => {
             await axios.post(`http://localhost:8000/api/puppies/`, {
                 ...formData,
             })
+            console.log(formData)
             addPuppy(formData)
             formData.name = ''
             formData.id = ''

@@ -7,7 +7,7 @@ export interface IPuppy {
 }
 export type PuppyContextType = {
     puppies: IPuppy[]
-    addPuppy: (todo: IPuppy) => void
-    updatePuppy: (id: string) => void
+    addPuppy: (puppy: IPuppy) => void
+    updatePuppy: (puppy: IPuppy) => void
     deletePuppy: (id: sring) => void
 }

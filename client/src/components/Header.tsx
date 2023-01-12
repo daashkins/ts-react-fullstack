@@ -10,7 +10,7 @@ import Image from '../images/bg_new.png'
 const Header = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ backgroundColor: '#d26419' }}>
+            <AppBar position="sticky" sx={{ backgroundColor: '#d26419' }}>
                 <Toolbar variant="dense">
                     <IconButton
                         edge="start"
