@@ -4,20 +4,17 @@ import Puppies from './components/Puppies'
 import AddPuppy from './components/AddPuppy'
 import Main from './components/Main'
 import Header from './components/Header'
-import './App.css';
+import './App.css'
 
 function App() {
-  return (
-    <PuppyProvider>
-      <div className='App'>
-        <Header/>
-        <Main/>
-      </div>
-    </PuppyProvider>
-  );
+    return (
+        <PuppyProvider>
+            <div className="App">
+                <Header />
+                <Main />
+            </div>
+        </PuppyProvider>
+    )
 }
 
-export default App;
-
-
-
+export default App
