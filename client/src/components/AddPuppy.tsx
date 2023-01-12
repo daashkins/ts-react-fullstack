@@ -18,15 +18,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const AddPuppy = () => {
   const { addPuppy } = React.useContext(PuppyContext) as PuppyContextType;
-  const [formData, setFormData] = React.useState<IPuppy | {}>({
+  const [formData, setFormData] = React.useState<IPuppy>({
     id: "",
     name: "",
     breed: "",
     image: "",
-    birth_date: ""
+    birth_date: "",
   });
   const [breed, setBreed] = React.useState<String>("");
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
+  const [value, setValue] = React.useState<Dayjs | null>();
 
   const handleInputChange: ChangeEventHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFormData({
@@ -62,7 +62,7 @@ const AddPuppy = () => {
   }, [breed])
 
   useEffect(()=> {
-   const time: String = dayjs(value).format('DD/MM/YYYY');
+   const time: string = dayjs(value).format('DD/MM/YYYY');
    setFormData({
     ...formData,
     birth_date: time
@@ -75,8 +75,13 @@ const AddPuppy = () => {
       await axios.post(`http://localhost:8000/api/puppies/`, {
         ...formData
       });
-
         addPuppy(formData);
+        formData.name = "";
+        formData.id = "";
+        formData.image = "";
+        formData.birth_date = "";
+        formData.breed = "";
+        setValue(null);
     } catch (err) {
       console.error(err);
     }
@@ -95,19 +100,20 @@ const AddPuppy = () => {
     autoComplete="off"
     onSubmit={(e) => handleAddPuppy(e, formData)}
   >
-    <TextField id="name" type="text"  required label="Name" variant="outlined" onChange={handleInputChange} title="name"/>
-    <TextField id="breed" type="text"  required label="Breed" variant="outlined" onChange={handleInputChange} title="breed"/>
+    <TextField id="name" type="text"  required label="Name" variant="outlined" value={formData.name} onChange={handleInputChange} title="name"/>
+    <TextField id="breed" type="text"  required label="Breed" variant="outlined" value={formData.breed} onChange={handleInputChange} title="breed"/>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
           disableFuture
-          label="Responsive"
+          label="Birth date"
+          minDate={dayjs('1990-01-01')}
           openTo="year"
           views={['year', 'month', 'day']}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} required/>}
         />
     </LocalizationProvider>
     <Button variant="contained" type="submit" style={{backgroundColor: '#d26419'}} >Add your dog</Button>
