@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useContext } from 'react'
-import Typography from '@mui/material/Typography'
 import { PuppyContext } from '../context/puppiesContext'
 import { PuppyContextType, IPuppy } from '../types'
 import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList'
 import Puppy from './Puppy'
+import Typography from '@mui/material/Typography'
 
 const Puppies = () => {
     const { puppies } = useContext(PuppyContext) as PuppyContextType

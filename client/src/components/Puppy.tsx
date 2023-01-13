@@ -1,9 +1,12 @@
 import * as React from 'react'
+import axios from 'axios'
 import { useContext } from 'react'
-import Button from '@mui/material/Button'
+import { ChangeEventHandler } from 'react'
 import { PuppyContext } from '../context/puppiesContext'
 import { PuppyContextType, IPuppy } from '../types'
+import { TransitionProps } from '@mui/material/transitions'
 import DeleteIcon from '@mui/icons-material/Delete'
+import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
@@ -18,10 +21,9 @@ import CloseIcon from '@mui/icons-material/Close'
 import Slide from '@mui/material/Slide'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import { TransitionProps } from '@mui/material/transitions'
 import TextField from '@mui/material/TextField'
-import { ChangeEventHandler } from 'react'
-import axios from 'axios'
+
+
 
 type Props = {
     puppy: IPuppy

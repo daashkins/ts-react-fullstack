@@ -1,8 +1,9 @@
 import * as React from 'react'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import axios from 'axios'
+
 
 const FunFact = () => {
     const [fact, setFact] = useState<String>('')

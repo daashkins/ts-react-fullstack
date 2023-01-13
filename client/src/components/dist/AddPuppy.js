@@ -48,19 +48,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var React = require("react");
+var axios_1 = require("axios");
 var puppiesContext_1 = require("../context/puppiesContext");
 var react_1 = require("react");
-var Box_1 = require("@mui/material/Box");
-var Button_1 = require("@mui/material/Button");
-var TextField_1 = require("@mui/material/TextField");
-var Typography_1 = require("@mui/material/Typography");
-var Pets_1 = require("@mui/icons-material/Pets");
-var axios_1 = require("axios");
 var uuid_1 = require("uuid");
 var dayjs_1 = require("dayjs");
 var AdapterDayjs_1 = require("@mui/x-date-pickers/AdapterDayjs");
 var LocalizationProvider_1 = require("@mui/x-date-pickers/LocalizationProvider");
 var DatePicker_1 = require("@mui/x-date-pickers/DatePicker");
+var Box_1 = require("@mui/material/Box");
+var Button_1 = require("@mui/material/Button");
+var TextField_1 = require("@mui/material/TextField");
+var Typography_1 = require("@mui/material/Typography");
+var Pets_1 = require("@mui/icons-material/Pets");
 var AddPuppy = function () {
     var addPuppy = React.useContext(puppiesContext_1.PuppyContext).addPuppy;
     var _a = React.useState({
@@ -72,10 +72,6 @@ var AddPuppy = function () {
     }), formData = _a[0], setFormData = _a[1];
     var _b = React.useState(''), breed = _b[0], setBreed = _b[1];
     var _c = React.useState(), value = _c[0], setValue = _c[1];
-    // setFormData({
-    //     ...formData,
-    //     id: uuidv4(),
-    // })
     var handleInputChange = function (event) {
         var _a;
         setFormData(__assign(__assign({}, formData), (_a = {}, _a[event.currentTarget.id] = event.currentTarget.value, _a)));
