@@ -48,10 +48,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var React = require("react");
+var axios_1 = require("axios");
 var react_1 = require("react");
-var Button_1 = require("@mui/material/Button");
 var puppiesContext_1 = require("../context/puppiesContext");
 var Delete_1 = require("@mui/icons-material/Delete");
+var Button_1 = require("@mui/material/Button");
 var Box_1 = require("@mui/material/Box");
 var ImageListItem_1 = require("@mui/material/ImageListItem");
 var ImageListItemBar_1 = require("@mui/material/ImageListItemBar");
@@ -67,7 +68,6 @@ var Slide_1 = require("@mui/material/Slide");
 var AppBar_1 = require("@mui/material/AppBar");
 var Toolbar_1 = require("@mui/material/Toolbar");
 var TextField_1 = require("@mui/material/TextField");
-var axios_1 = require("axios");
 var Transition = React.forwardRef(function Transition(props, ref) {
     return React.createElement(Slide_1["default"], __assign({ direction: "up", ref: ref }, props));
 });
