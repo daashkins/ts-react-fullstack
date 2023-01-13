@@ -81,7 +81,7 @@ const Puppy: React.FC<Props> = ({ puppy }) => {
 
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-            <ImageListItem key={puppy.id} className="front">
+            <ImageListItem className="front">
                 <img src={puppy.image} alt={puppy.breed} loading="lazy" />
                 <ImageListItemBar
                     title={

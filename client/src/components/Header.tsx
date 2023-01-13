@@ -9,22 +9,20 @@ import Image from '../images/bg_new.png'
 
 const Header = () => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="sticky" sx={{ backgroundColor: '#d26419' }}>
+        <Box sx={{ flexGrow: 1, backgroundColor: `#5555610f` }}>
+            <AppBar position="static" sx={{ backgroundColor: '#d26419' }}>
                 <Toolbar variant="dense">
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography variant="h6" color="inherit" component="div">
                         Dog connect
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <Box
+                sx={{
+                    height: "30px",
+                    backgroundColor: `#5555610f`,
+                }}
+            ></Box>
             <Box
                 sx={{
                     flexGrow: 1,
@@ -33,7 +31,6 @@ const Header = () => {
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'contain',
                     height: 200,
-                    paddingTop: 30,
                     backgroundPosition: 'center',
                     boxSizing: 'border-box',
                 }}

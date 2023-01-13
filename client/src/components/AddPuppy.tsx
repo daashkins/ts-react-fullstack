@@ -18,7 +18,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 const AddPuppy = () => {
     const { addPuppy } = React.useContext(PuppyContext) as PuppyContextType
     const [formData, setFormData] = React.useState<IPuppy>({
-        id: '',
+        id: uuidv4(),
         name: '',
         breed: '',
         image: '',
@@ -47,12 +47,11 @@ const AddPuppy = () => {
                 )
                 const number: number = Math.floor(Math.random() * 10)
                 const image: string =
-                    response.data.hits[number].webformatURL ||
+                    response.data.hits[number]?.webformatURL ||
                     'https://images.unsplash.com/photo-1609851764352-4f251185b6c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                 setFormData({
                     ...formData,
                     image: image,
-                    id: uuidv4(),
                 })
             } catch (error) {
                 console.log(error)
@@ -83,7 +82,7 @@ const AddPuppy = () => {
             console.log(formData)
             addPuppy(formData)
             formData.name = ''
-            formData.id = ''
+            formData.id = uuidv4()
             formData.image = ''
             formData.birth_date = ''
             formData.breed = ''

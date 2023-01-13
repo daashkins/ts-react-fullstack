@@ -115,7 +115,7 @@ var Puppy = function (_a) {
         });
     }); };
     return (React.createElement(react_card_flip_1["default"], { isFlipped: isFlipped, flipDirection: "vertical" },
-        React.createElement(ImageListItem_1["default"], { key: puppy.id, className: "front" },
+        React.createElement(ImageListItem_1["default"], { className: "front" },
             React.createElement("img", { src: puppy.image, alt: puppy.breed, loading: "lazy" }),
             React.createElement(ImageListItemBar_1["default"], { title: React.createElement("span", { className: "front_header" }, formData.name), position: "below" }),
             React.createElement(Box_1["default"], { sx: {
@@ -151,7 +151,7 @@ var Puppy = function (_a) {
                 React.createElement(Button_1["default"], { size: "small", onClick: handleClick, sx: { color: 'rgb(0 0 0 / 87%)' } }, "Back"),
                 React.createElement(Delete_1["default"], { onClick: function () { return deletePuppy(puppy.id); }, sx: { color: '#d26419' } })),
             React.createElement(Dialog_1["default"], { fullScreen: true, open: open, onClose: handleClose, TransitionComponent: Transition },
-                React.createElement(Box_1["default"], { component: "form", sx: { '& > :not(style)': { m: 1, width: '50%' } }, autoComplete: "off", onSubmit: function (e) { return handleUpdatePuppy(e, formData); } },
+                React.createElement(Box_1["default"], { component: "form", autoComplete: "off", onSubmit: function (e) { return handleUpdatePuppy(e, formData); } },
                     React.createElement(AppBar_1["default"], { sx: {
                             position: 'relative',
                             backgroundColor: '#d26419'
