@@ -1,19 +1,17 @@
-# Salt React Fullstack - TypeScript Addon
+# React Fullstack - TypeScript
 
-## Task
-Your task is to create a frontend to the API that you created the other day, aka `puppiesAPI`.
-This is a good app to put in your portfolio, so even though it does not have any design requirements, make it look nice. The application should be built with React and TypeScript
+This App created with the following technologies:
 
-Requirements for the UI:
-- It should display the initial puppies that exist in the DB on first load.
-- It should have the possibility to add a new puppy.
-- It should have the possibility to update an existing puppy.
-- It should display details when clicking on a selected puppy.
-- It should be able to delete a puppy from the DB.
 
-### Extra challenge
-Fetch an image from Unsplash API (or similar) and aggregate the data in your own API to include the image with the rest of the puppy information.
+ <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+ <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original.svg" title="NodeJS" alt="NodeJS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original.svg" title="Mongodb" alt="Mongodb" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="Typescript" alt="Typescript" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/materialui/materialui-original.svg" title="Material UI" alt="Material UI" width="40" height="40"/>&nbsp;
+  
+Two external APIs were used: 
+- Dog facts  - https://dog-api.kinduff.com/api
+- Dog photos - https://pixabay.com/api
 
----
+https://user-images.githubusercontent.com/64709477/212641334-d5244334-5eaf-498c-b4cf-1afd0b2012c5.mp4
 
-GLHF!
